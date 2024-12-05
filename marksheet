@@ -1,0 +1,65 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .marksheet {
+            margin-top: 20px;
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Marksheet Generator</h1>
+    <p>Enter your ID number to see your marksheet:</p>
+    <input type="text" id="studentId" placeholder="Enter your ID">
+    <button onclick="generateMarksheet()">Show Marksheet</button>
+
+    <div id="marksheet" class="marksheet">
+        <h2>Marksheet</h2>
+        <p><strong>Name:</strong> <span id="studentName"></span></p>
+        <p><strong>Subject 1:</strong> <span id="subject1"></span></p>
+        <p><strong>Subject 2:</strong> <span id="subject2"></span></p>
+        <p><strong>Subject 3:</strong> <span id="subject3"></span></p>
+        <p><strong>Total:</strong> <span id="total"></span></p>
+    </div>
+
+    <script>
+        // Predefined marksheet data
+        const marksheetData = {
+            "101": { name: "John Doe", subject1: 85, subject2: 90, subject3: 78 },
+            "102": { name: "Jane Smith", subject1: 88, subject2: 92, subject3: 80 },
+            "103": { name: "Alice Brown", subject1: 76, subject2: 84, subject3: 69 },
+        };
+
+        function generateMarksheet() {
+            const studentId = document.getElementById("studentId").value;
+            const data = marksheetData[studentId];
+
+            if (data) {
+                document.getElementById("studentName").innerText = data.name;
+                document.getElementById("subject1").innerText = data.subject1;
+                document.getElementById("subject2").innerText = data.subject2;
+                document.getElementById("subject3").innerText = data.subject3;
+                document.getElementById("total").innerText = data.subject1 + data.subject2 + data.subject3;
+
+                document.getElementById("marksheet").style.display = "block";
+            } else {
+                alert("No marksheet found for this ID!");
+                document.getElementById("marksheet").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
